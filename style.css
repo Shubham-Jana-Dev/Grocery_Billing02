@@ -55,6 +55,11 @@ select {
     font-size: 1em;
 }
 
+.auto-paid-by-display {
+    background-color: #ecf0f1; /* Gray background for read-only field */
+    font-weight: bold;
+}
+
 .checkbox-group input[type="checkbox"] {
     transform: scale(1.2); 
     margin-right: 5px;
@@ -109,7 +114,7 @@ select {
 
 
 /* --- History Table (Mobile Responsive Fix) --- */
-#historyTable {
+#historyTable, #deletedHistoryTable {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
@@ -118,20 +123,32 @@ select {
     white-space: nowrap; 
 }
 
-#historyTable th, #historyTable td {
+#historyTable th, #historyTable td, #deletedHistoryTable th, #deletedHistoryTable td {
     border: 1px solid #ddd;
     padding: 8px; 
     text-align: left;
     font-size: 0.9em;
 }
 
-#historyTable th {
+#historyTable th, #deletedHistoryTable th {
     background-color: #34495e;
     color: white;
 }
 
-#historyTable tr:nth-child(even) {
+#historyTable tr:nth-child(even), #deletedHistoryTable tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2em;
+    width: auto;
+    display: inline;
 }
 
 
@@ -209,13 +226,13 @@ hr {
     }
     
     /* Restore normal table display on desktop */
-    #historyTable {
+    #historyTable, #deletedHistoryTable {
         display: table;
         overflow-x: visible;
         white-space: normal;
     }
 
-    #historyTable th, #historyTable td {
+    #historyTable th, #historyTable td, #deletedHistoryTable th, #deletedHistoryTable td {
         padding: 10px;
         font-size: 1em;
     }
