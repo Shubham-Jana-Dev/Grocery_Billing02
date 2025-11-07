@@ -1,93 +1,116 @@
-/* --- Base Styles (Mobile-First Default) --- */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7f6;
-    color: #333;
-    line-height: 1.6;
-    padding: 10px; 
+/* --- Global Variables and Base Styles --- */
+:root {
+    --primary-color: #3498db; /* Bright Blue */
+    --secondary-color: #2ecc71; /* Green */
+    --danger-color: #e74c3c; /* Red */
+    --background-light: #ecf0f1; /* Light Gray/Blue background */
+    --text-dark: #2c3e50; /* Dark Text */
+    --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --border-radius: 8px;
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    padding: 20px 10px;
+    margin: 0;
+}
 .container {
     max-width: 900px;
     margin: 0 auto;
     background: #fff;
-    padding: 20px 15px; 
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
 }
 
+/* --- Typography and Headings --- */
 h1 {
     text-align: center;
-    color: #2c3e50;
-    margin-bottom: 5px;
-    font-size: 1.8em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 2.2em;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
-
 h2 {
-    color: #3498db;
-    border-bottom: 2px solid #ecf0f1;
+    color: var(--text-dark);
+    border-bottom: 2px solid #bdc3c7; /* Light grey bottom line */
     padding-bottom: 10px;
-    margin-top: 20px; 
-    font-size: 1.3em; 
+    margin-top: 30px;
+    font-size: 1.5em;
+    font-weight: 500;
+}
+.note {
+    text-align: center;
+    color: #7f8c8d;
+    font-size: 0.9em;
+    margin-bottom: 25px;
+}
+.footer-note {
+    color: #7f8c8d;
 }
 
-/* --- Form and Inputs --- */
+/* --- Forms and Inputs --- */
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
-
 label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    font-size: 0.95em;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 1em;
 }
-
 input[type="date"],
 input[type="number"],
 input[type="text"],
 select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box; 
+    border-radius: 5px;
+    box-sizing: border-box;
     font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
-
-.auto-paid-by-display {
-    background-color: #ecf0f1; /* Gray background for read-only field */
-    font-weight: bold;
+input:focus, select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+    outline: none;
 }
-
+.checkbox-group label {
+    font-weight: normal;
+    padding-right: 15px;
+}
 .checkbox-group input[type="checkbox"] {
-    transform: scale(1.2); 
-    margin-right: 5px;
     vertical-align: middle;
 }
 
-.checkbox-group label {
-    display: inline-block;
-    margin-right: 15px;
-    font-weight: normal;
-    padding-right: 5px;
-}
-
-/* Make buttons full width and better targets on mobile */
+/* --- Buttons --- */
 .btn {
-    display: block; 
+    display: block;
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
-    margin-top: 15px;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.btn:active {
+    transform: translateY(1px);
 }
 
 .add-btn {
-    background-color: #2ecc71;
+    background-color: var(--secondary-color);
     color: white;
 }
 .add-btn:hover {
@@ -95,145 +118,155 @@ select {
 }
 
 .calculate-btn {
-    background-color: #9b59b6;
+    background-color: #9b59b6; /* Purple for calculation */
     color: white;
-    margin-bottom: 15px; 
+    margin-bottom: 15px;
 }
 .calculate-btn:hover {
     background-color: #8e44ad;
 }
 
 .clear-btn {
-    background-color: #e74c3c;
+    background-color: var(--danger-color);
     color: white;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 .clear-btn:hover {
     background-color: #c0392b;
 }
 
+/* NEW: Style for the Clear Delete History button */
+.clear-delete-btn {
+    background-color: #f39c12; /* Orange color */
+    color: white;
+    margin-top: 20px;
+}
+.clear-delete-btn:hover {
+    background-color: #e67e22;
+}
 
-/* --- History Table (Mobile Responsive Fix) --- */
+/* NEW: Style for the individual Delete button in the table */
+.delete-transaction-btn {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 0.8em;
+    transition: background-color 0.3s;
+    display: inline-block;
+    width: auto; /* Override general button width */
+}
+.delete-transaction-btn:hover {
+    background-color: #c0392b;
+}
+
+/* --- Results and Instructions Boxes --- */
+.result-box, .instructions-box {
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-bottom: 20px;
+    background-color: #f8f9fa; /* Very light gray background */
+    border: 1px solid #dcdfe4;
+    overflow-x: auto;
+}
+.result-box h3, .instructions-box h3 {
+    font-size: 1.2em;
+    color: var(--text-dark);
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+.result-box p {
+    margin: 8px 0;
+}
+.result-box .positive {
+    color: var(--secondary-color); /* Green for receiving */
+    font-weight: bold;
+}
+.result-box .negative {
+    color: var(--danger-color); /* Red for owing */
+    font-weight: bold;
+}
+.instructions-box ul {
+    list-style-type: '👉 '; /* Custom bullet point */
+    padding-left: 20px;
+}
+.instructions-box li {
+    margin-bottom: 8px;
+}
+
+/* --- History Tables --- */
 #historyTable, #deletedHistoryTable {
     width: 100%;
     border-collapse: collapse;
-    margin-top: 15px;
-    display: block; 
-    overflow-x: auto; /* Enable horizontal scrolling */
-    white-space: nowrap; 
+    margin-top: 20px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-radius: var(--border-radius); /* Rounded corners for the table area */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
-
 #historyTable th, #historyTable td, #deletedHistoryTable th, #deletedHistoryTable td {
-    border: 1px solid #ddd;
-    padding: 8px; 
+    border: 1px solid #e9ecef; /* Lighter border color */
+    padding: 12px 10px;
     text-align: left;
     font-size: 0.9em;
 }
-
 #historyTable th, #deletedHistoryTable th {
-    background-color: #34495e;
+    background-color: var(--primary-color);
     color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: sticky; /* Keep header visible on horizontal scroll */
+    top: 0;
 }
-
 #historyTable tr:nth-child(even), #deletedHistoryTable tr:nth-child(even) {
-    background-color: #f2f2f2;
+    background-color: #f8f9fa;
+}
+#historyTable tr:hover, #deletedHistoryTable tr:hover {
+    background-color: #e9f5ff; /* Subtle hover effect */
 }
 
-.delete-btn {
-    background: none;
-    border: none;
-    color: #e74c3c;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    font-size: 1.2em;
-    width: auto;
-    display: inline;
-}
-
-
-/* --- Settlement Results --- */
-.result-box, .instructions-box {
-    padding: 15px;
-    border-radius: 4px;
-    margin-bottom: 15px;
-    border: 1px dashed #3498db;
-    overflow-x: auto; 
-}
-
-.result-box h3, .instructions-box h3 {
-    margin-top: 0;
-    font-size: 1.1em;
-}
-
-.result-box p {
-    margin: 5px 0;
-    font-size: 1em;
-    word-break: break-word;
-}
-
-.result-box .positive {
-    color: #27ae60;
-    font-weight: bold;
-}
-
-.result-box .negative {
-    color: #e74c3c;
-    font-weight: bold;
-}
-
-.instructions-box ul {
-    list-style-type: disc;
-    padding-left: 20px;
-}
 
 hr {
     border: 0;
     height: 1px;
-    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
-    margin: 30px 0;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0));
+    margin: 40px 0;
 }
 
-/* --- Desktop/Tablet styles (Min-width media query) --- */
+/* --- Media Query for Desktop/Tablet --- */
 @media (min-width: 600px) {
-    body {
-        padding: 20px;
-    }
-
     .container {
-        padding: 30px; 
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        padding: 40px;
     }
-
     h1 {
-        font-size: 2em;
+        font-size: 2.5em;
     }
-
     h2 {
-        font-size: 1.5em;
-        margin-top: 25px;
+        font-size: 1.7em;
     }
-
-    /* Undo full-width buttons for desktop */
+    /* Adjust buttons back to inline-block for desktop layout */
     .btn {
         display: inline-block;
-        width: auto; 
-        padding: 10px 15px;
+        width: auto;
+        padding: 12px 20px;
+        margin-right: 10px; 
+        margin-top: 10px;
     }
-    
-    .calculate-btn {
-        margin-bottom: 0; 
+    .add-btn {
+        margin-top: 0; 
     }
-    
+    .clear-btn, .clear-delete-btn {
+        margin-top: 25px;
+        margin-right: 10px; 
+    }
     /* Restore normal table display on desktop */
     #historyTable, #deletedHistoryTable {
         display: table;
         overflow-x: visible;
         white-space: normal;
-    }
-
-    #historyTable th, #historyTable td, #deletedHistoryTable th, #deletedHistoryTable td {
-        padding: 10px;
-        font-size: 1em;
     }
 }
